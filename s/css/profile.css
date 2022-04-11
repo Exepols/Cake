@@ -1,0 +1,238 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: Verdana, sans-serif;
+}
+
+::selection {
+    background: mediumpurple;
+    color: #fff;
+}
+
+html {
+    overflow-x: hidden;
+    margin-right: calc(-1 * (100vw - 100%));
+}
+
+body {
+    overflow-x: hidden;
+}
+
+main, footer, .list__products {
+    margin: 0 200px;
+}
+
+.df {
+    display: flex;
+}
+
+.jc {
+    justify-content: space-around;
+}
+
+.jcc {
+    justify-content: center;
+}
+
+.ai {
+    align-items: center;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+/* Шапка */
+
+.container__head {
+    margin: 0 200px;
+    height: 80px;
+    justify-content: space-between;
+}
+
+.container__head form {
+    margin-left: 14px;
+}
+
+.container__head form input {
+    text-indent: 10px;
+    width: 240px;
+    height: 28px;
+    border-radius: 5px 0 0 5px;
+    font-size: 14px;
+    border: 2px solid mediumpurple;
+}
+
+.container__head form button {
+    width: 65px;
+    border-radius: 0 5px 5px 0;
+    font-size: 14px;
+    color: white;
+    background-color: mediumpurple;
+    border: 2px solid mediumpurple;
+}
+
+.menu {
+    margin-right: 20px;
+    gap: 20px;
+}
+
+.menu a {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* Профиль */
+
+main {
+    margin-top: 20px;
+    min-height: 600px;
+}
+
+.profile__top__text {
+    font-size: 32px;
+    gap: 5px;
+}
+
+.profile {
+    margin-top: 20px;
+    gap: 30px;
+}
+
+.profile__img-text {
+    margin-left: 20px;
+}
+
+.profile__img-text span {
+    gap: 5px;
+    font-size: 18px;
+    flex-direction: column;
+    font-weight: bold;
+}
+
+.profile__img-text span img {
+    border: 1px solid black;
+    border-radius: 10px;
+    height: 240px;
+    width: 240px;
+}
+
+.profile__info {
+    flex-direction: column;
+    gap: 30px;
+    font-size: 16px;
+}
+
+.profile__inner__info {
+    cursor: pointer;
+    gap: 30px;
+}
+
+.profile__all {
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-end
+}
+
+.profile__form {
+    flex-direction: column;
+    gap: 10px;
+}
+
+.profile__form label {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.editB {
+    justify-content: flex-end;
+}
+
+.profile__container {
+    gap: 15px;
+    flex-direction: column;
+}
+
+.container__history__products {
+    flex-direction: column;
+    gap: 15px;
+}
+
+.profile__history__top__info {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.profile__history__products__info {
+    flex-direction: column;
+    gap: 15px;
+}
+
+.product__info {
+    gap: 15px;
+}
+
+.profile__history img {
+    height: 60px;
+    width: 60px;
+    border-radius: 8px;
+}
+
+.history__info {
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.history__name {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.history__amount {
+    font-size: 12px;
+}
+
+.history__price {
+    font-size: 16px;
+    color: mediumpurple;
+}
+
+.edit img {
+    width: 24px;
+    height: 24px;
+}
+
+.edit span {
+    gap: 5px;
+}
+
+hr {
+    margin: 80px 200px 30px 200px;
+}
+
+/* Подвал */
+
+footer {
+    margin-top: 30px;
+}
+
+.footer__nav {
+    margin: 20px 0;
+    font-size: 18px;
+    font-weight: bold;
+    gap: 20px;
+}
+
+.footer__media {
+    margin: 40px 0;
+    gap: 20px;
+}
+
+.footer__contact {
+    margin: 40px 0;
+    gap: 20px;
+}

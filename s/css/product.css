@@ -1,0 +1,433 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: Verdana, sans-serif;
+}
+
+::selection {
+    background: mediumpurple;
+    color: #fff;
+}
+
+html {
+    overflow-x: hidden;
+    margin-right: calc(-1 * (100vw - 100%));
+  }
+
+body {
+    overflow-x: hidden;
+}
+
+main, footer, .list__products {
+    margin: 0 200px;
+}
+
+.df {
+    display: flex;
+}
+
+.jc {
+    justify-content: space-around;
+}
+
+.jcc {
+    justify-content: center;
+}
+
+.ai {
+    align-items: center;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+/* Шапка */
+
+.container__head {
+    margin: 0 200px;
+    height: 80px;
+    justify-content: space-between;
+}
+
+.container__head form {
+    margin-left: 14px;
+}
+
+.container__head form input {
+    text-indent: 10px;
+    width: 240px;
+    height: 28px;
+    border-radius: 5px 0 0 5px;
+    font-size: 14px;
+    border: 2px solid mediumpurple;
+}
+
+.container__head form button {
+    width: 65px;
+    border-radius: 0 5px 5px 0;
+    font-size: 14px;
+    color: white;
+    background-color: mediumpurple;
+    border: 2px solid mediumpurple;
+}
+
+.menu {
+    margin-right: 20px;
+    gap: 20px;
+}
+
+.menu a {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* Главная */
+
+main {
+    margin-top: 20px;
+    padding-left: 15px;
+}
+
+.main__product {
+    flex-direction: column;
+    gap: 20px;
+}
+
+.product__breadcrumb {
+    font-size: 14px;
+    font-weight: bold;
+    gap: 12px;
+}
+
+.product__breadcrumb hr {
+    background-color: black;
+    height: 4px;
+    width: 16px;
+}
+
+.product__info {
+    gap: 20px;
+    flex-direction: column;
+}
+
+.prd__info {
+    gap: 20px;
+}
+
+.info__text {
+    width: 300px;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.info__img img{
+    width: 400px;
+    height: 400px;
+    border-radius: 8px;
+}
+
+.info__name {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.info__p-a {
+    justify-content: space-between;
+}
+
+.price {
+    gap: 10px;
+}
+
+.new {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.product__form {
+    justify-content: space-between;
+}
+
+.cart__amount input, .minus, .plus {
+    width: 38px;
+    height: 38px;
+    font-size: 24px;
+    text-align: center;
+    border: 2px solid rgba(0, 0, 0, 0.15);
+}
+
+.minus {
+    border-radius: 4px 0px 0px 4px;
+}
+
+.plus {
+    border-radius: 0px 4px 4px 0px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    display: none;
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.product__form button {
+    padding: 0 10px;
+    height: 38px;
+    border: none;
+    border-radius: 6px;
+    background: mediumpurple;
+    color: white;
+}
+
+.product__wp-d {
+    flex-direction: column;
+    gap: 30px;
+}
+
+.wp {
+    flex-direction: column;
+    gap: 10px;
+    font-size: 14px;
+    color: #8B8B8B;
+}
+
+.wp span {
+    color: black;
+}
+
+.edit img {
+    width: 24px;
+    height: 24px;
+}
+
+.edit {
+    justify-content: flex-end;
+}
+
+.weight, .portions {
+    justify-content: space-between;
+}
+
+.product__description {
+    margin: 0 10px;
+    gap: 10px;
+    flex-direction: column;
+}
+
+.dsc {
+    flex-direction: column;
+    gap: 5px;
+}
+
+.ingredients {
+    width: 1100px;
+}
+
+.reviews__info {
+    margin-top: 10px;
+    gap: 30px;
+    flex-direction: column;
+}
+
+.reviews__info img:not(.rating img) {
+    width: 64px;
+    height: 64px;
+    border: 1px solid black;
+    border-radius: 6px;
+}
+
+.fd {
+    flex-direction: column;
+    gap: 10px;
+}
+
+.fdd {
+    flex-direction: column;
+}
+
+.reviews__info-c {
+    gap: 5px;
+}
+
+.rating img{
+    width: 12px;
+    height: 12px;
+}
+
+.rait {
+    flex-direction: column;
+    gap: 5px;
+}
+
+.rating-area {
+	overflow: hidden;
+	width: 265px;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+}
+
+.rating-area:not(:checked) > input {
+	display: none;
+}
+
+.rating-area:not(:checked) > label {
+	float: right;
+	width: 42px;
+	padding: 0;
+	cursor: pointer;
+	font-size: 32px;
+	line-height: 32px;
+	color: lightgrey;
+	text-shadow: 1px 1px #bbb;
+}
+
+.rating-area:not(:checked) > label:before {
+	content: '★';
+}
+
+.rating-area > input:checked ~ label {
+	color: gold;
+	text-shadow: 1px 1px #c60;
+}
+
+.rating-area:not(:checked) > label:hover,
+.rating-area:not(:checked) > label:hover ~ label {
+	color: gold;
+}
+
+.rating-area > input:checked + label:hover,
+.rating-area > input:checked + label:hover ~ label,
+.rating-area > input:checked ~ label:hover,
+.rating-area > input:checked ~ label:hover ~ label,
+.rating-area > label:hover ~ input:checked ~ label {
+	color: gold;
+	text-shadow: 1px 1px goldenrod;
+}
+
+.rate-area > label:active {
+	position: relative;
+}
+
+.rating-result {
+	width: 265px;
+}
+
+.rating-result span {
+	padding: 0;
+	font-size: 32px;
+	margin: 0 3px;
+	line-height: 1;
+	color: lightgrey;
+	text-shadow: 1px 1px #bbb;
+}
+
+.rating-result > span:before {
+	content: '★';
+}
+
+.rating-result > span.active {
+	color: gold;
+	text-shadow: 1px 1px #c60;
+}
+
+.rating-mini {
+	display: inline-block;
+	font-size: 0;
+}
+
+.rating-mini span {
+	padding: 0;
+	font-size: 20px;
+	line-height: 1;
+	color: lightgrey;
+}
+
+.rating-mini > span:before {
+	content: '★';
+}
+
+.rating-mini > span.active {
+	color: gold;
+}
+
+.reviews__text {
+    width: 1000px;
+}
+
+.btn__reviews {
+    cursor: pointer;
+}
+
+.commentSend {
+    margin-top: 20px;
+}
+
+.commentSend form {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.commentSend textarea {
+    padding: 4px 10px;
+    width: 200px;
+    height: 80px;
+    max-width: 480px;
+    max-height: 120px;
+}
+
+.gap button, .btn a  {
+    font-size: 16px;
+    color: white;
+    cursor: pointer;
+    border: 0px solid mediumpurple;
+    border-radius: 8px;
+    background-color: mediumpurple;
+    min-width: 100px;
+    height: 32px;
+    padding: 10px;
+    margin: 20px 0;
+}
+
+.gap {
+    gap: 20px;
+}
+
+.commentSend .img {
+    cursor: pointer;
+    width: 24px!important;
+    height: 24px!important;
+    border: none!important;
+}
+
+hr:not(.product__breadcrumb hr) {
+    margin: 80px 200px 30px 200px;
+}
+
+/* Подвал */
+
+footer {
+    margin-top: 30px;
+}
+
+.footer__nav {
+    margin: 20px 0;
+    font-size: 18px;
+    font-weight: bold;
+    gap: 20px;
+}
+
+.footer__media {
+    margin: 40px 0;
+    gap: 20px;
+}
+
+.footer__contact {
+    margin: 40px 0;
+    gap: 20px;
+}

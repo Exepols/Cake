@@ -1,0 +1,236 @@
+<?php
+require("db.php");
+
+if (isset($_GET["logout"])) {
+    unset($_SESSION["user"]);
+};
+
+if (!isset($_SESSION["user"])) {
+    echo "<script>
+        location.href = 'index.php';
+        </script>";
+}
+
+$suid = $_SESSION["user"]["id"];
+$products = $db->query("SELECT * FROM products WHERE hidden='no'")->fetchAll(2);
+
+$favourites = $db->query("SELECT * FROM favourites WHERE user_id='$suid'")->fetchAll(2)[0];
+?>
+
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="image/1.jpg" type="image/jpg" sizes="16x16">
+    <link rel="stylesheet" href="css/index.css">
+    <title>Mint-Cake интернет-магазин по продаже тортов. Торты по выгодным ценам</title>
+</head>
+
+<body>
+    <header>
+        <div class="head">
+            <div class="container__head df ai">
+                <div class="df ai">
+                    <a href="index.php">
+                        <img src="image/logo.svg" alt="Логотип">
+                    </a>
+                    <form action="search.php" method="POST" class="df">
+                        <input type="search" name="search" placeholder="Поиск" required>
+                        <button type="submit">Найти</button>
+                    </form>
+                </div>
+                <?php if (isset($_SESSION["user"])) { ?>
+                    <div class="menu df">
+                        <a href="about.php">
+                            <img src="image/about.svg" alt="О нас" width="32" height="16">
+                            <span>О нас</span>
+                        </a>
+                        <a href="sales.php">
+                            <img src="image/sale.svg" alt="Акции" width="20" height="20">
+                            <span>Акции</span>
+                        </a>
+                        <a href="delivery.php">
+                            <img src="image/delivery.svg" alt="Доставка" width="14" height="19">
+                            <span>Доставка</span>
+                        </a>
+                        <a href="favorites.php">
+                            <img src="image/favorites.svg" alt="Избранное" width="16" height="16">
+                            <span>Избранное</span>
+                        </a>
+                        <?php if ($_SESSION["user"]["role"] == 1) { ?>
+                            <a href="admin.php">
+                                <img src="image/admin.svg" alt="Меню" width="16" height="16">
+                                <span>Меню</span>
+                            </a>
+                            <a href="profile.php">
+                                <img src="image/profile.svg" alt="Меню" width="16" height="16">
+                                <span>Профиль</span>
+                            </a>
+                            <a href="?logout=1">
+                                <img src="image/login.svg" alt="Войти" width="16" height="16">
+                                <span>Выйти</span>
+                            </a>
+                        <?php } else { ?>
+                            <a href="profile.php">
+                                <img src="image/profile.svg" alt="Меню" width="16" height="16">
+                                <span>Профиль</span>
+                            </a>
+                            <a href="?logout=1">
+                                <img src="image/login.svg" alt="Войти" width="16" height="16">
+                                <span>Выйти</span>
+                            </a>
+                        <?php } ?>
+                    </div>
+                <?php } else { ?>
+                    <div class="menu df">
+                        <a href="about.php">
+                            <img src="image/about.svg" alt="О нас" width="32" height="16">
+                            <span>О нас</span>
+                        </a>
+                        <a href="sales.php">
+                            <img src="image/sale.svg" alt="Акции" width="20" height="20">
+                            <span>Акции</span>
+                        </a>
+                        <a href="delivery.php">
+                            <img src="image/delivery.svg" alt="Доставка" width="14" height="19">
+                            <span>Доставка</span>
+                        </a>
+                        <a href="favorites.php">
+                            <img src="image/favorites.svg" alt="Избранное" width="16" height="16">
+                            <span>Избранное</span>
+                        </a>
+                        <a href="login.php">
+                            <img src="image/login.svg" alt="Войти" width="16" height="16">
+                            <span>Войти</span>
+                        </a>
+                    </div>
+                <?php } ?>
+            </div>
+        </div>
+    </header>
+    <main>
+    <div class="products df jc">
+    <section class="prd__sale">
+        <h2 class="df ai jcc" style="margin-bottom: 20px;">
+            <img src="image/favorites.svg" alt="%" height="36" width="36">
+            Избранное
+        </h2>
+            <?php foreach ($products as $product) : ?>
+            <?php if (($product["id"] == $favourites["product_id"]) && ($favourites["user_id"] == $suid)) {?>
+                <div class="card">
+                    <?php if ($product["new"] == "yes") { ?>
+                        <div class="badge df ai">
+                            <img src="image/new.svg" alt="NEW" width="26" height="26">
+                            <span>Новинка</span>
+                        </div>
+                    <?php } ?>
+                    <div class="card__add df ai jcc">
+                        <img src="image/basket_p.svg" alt="Корзина" width="24" height="24">
+                    </div>
+                    <?php if (isset($_SESSION["user"])) { ?>
+                        <form method="POST" action="#" class="card__fav df ai jcc">
+                        <?php if (($favourites["user_id"] == $suid) && ($product["id"] == $favourites["product_id"]) 
+                                && ($favourites["del"] == "yes")) { ?>
+                                <input type="hidden" name="del_favourites">
+                                <input type="hidden" name="pid" value="<?= $product["id"] ?>">
+                                <button type="submit"><img src="image/full_heart.svg" alt="Избранное" width="24" height="24"></button>
+                        <?php } else { ?>
+                                <input type="hidden" name="add_favourites">
+                                <input type="hidden" name="pid" value="<?= $product["id"] ?>">
+                                <button type="submit"><img src="image/heart.svg" alt="Избранное" width="24" height="24"></button>
+                        <?php } ?>
+                        </form>
+                    <?php } ?>
+                    <div class="card__img">
+                        <a href="product.php?id=<?= $product["id"] ?>">
+                            <img src="image/<?= $product["image"] ?>.jpg" alt="Фотография шоколадного чизкейка">
+                        </a>
+                        <div class="card__new"></div>
+                    </div>
+                    <div class="card__text">
+                        <a href="product.php?id=<?= $product["id"] ?>">
+                            <div class="card__text__name"><?= $product["name"] ?></div>
+
+                                <?php
+                                $sth = $db->prepare("
+                                    SELECT 
+                                        SUM(`rating`) AS `total`, 
+                                        COUNT(`product_id`) AS `count` 
+                                    FROM 
+                                        `reviews` 
+                                    WHERE 
+                                        `product_id` = ?;
+                                        AND `rating` > 0
+                                ");
+                            
+                                $sth->execute(array($product['id']));
+                                $data = $sth->fetch(PDO::FETCH_ASSOC);
+                                $rating = ceil($data['total'] / $data['count']);
+                                ?>
+
+                                <div class="rating-mini">
+                                    <span class="<?php if ($rating >= 1) echo 'active'; ?>"></span>	
+                                    <span class="<?php if ($rating >= 2) echo 'active'; ?>"></span>    
+                                    <span class="<?php if ($rating >= 3) echo 'active'; ?>"></span>  
+                                    <span class="<?php if ($rating >= 4) echo 'active'; ?>"></span>    
+                                    <span class="<?php if ($rating >= 5) echo 'active'; ?>"></span>
+                                </div>
+                                <span>(<?php echo $data['count'];?>)</span>
+                        </a>
+                        <div class="card__text__all df ai">
+                            <div class="card__price df">
+                                <span class="price"><?= $product["price"] ?>₽</span>
+                            </div>
+                            <span class="weight"><?= $product["portions"] ?> порций, <?= $product["weight"] ?> г.</span>
+                        </div>
+                    </div>
+                </div>
+                <?php }; ?>
+            <?php endforeach; ?>
+        </div>
+        </section>
+    </main>
+    <hr>
+    <footer>
+        <div class="footer_nav df jcc">
+            <a href="about.php">О нас</a>
+            <a href="sales.php">Акции</a>
+            <a href="delivery.php">Доставка</a>
+        </div>
+        <div class="footer__media df jcc">
+            <a href="https://youtube.com">
+                <img src="image/youtube.svg" alt="Youtube" width="56" height="56">
+            </a>
+            <a href="https://vk.com">
+                <img src="image/vk.svg" alt="Vkontakte" width="56" height="56">
+            </a>
+            <a href="https://facebook.com">
+                <img src="image/facebook.svg" alt="Facebook" width="56" height="56">
+            </a>
+            <a href="https://twitter.com">
+                <img src="image/twitter.svg" alt="Twitter" width="56" height="56">
+            </a>
+            <a href="https://web.telegram.org">
+                <img src="image/telegram.svg" alt="Telegram" width="56" height="56">
+            </a>
+            <a href="https://instagram.com">
+                <img src="image/instagram.svg" alt="Instagram" width="56" height="56">
+            </a>
+            <a href="https://discord.com">
+                <img src="image/discord.svg" alt="Discord" width="56" height="56">
+            </a>
+            <a href="https://livejournal.com">
+                <img src="image/livejournal.svg" alt="Livejournal" width="56" height="56">
+            </a>
+        </div>
+        <div class="footer__contact df jcc">
+            <span class="fc__number">+7 (999) 777-77-77</span>
+            <span class="fc__mail">Mint-Cakes@gmail.com</span>
+        </div>
+    </footer>
+</body>
+
+</html>
